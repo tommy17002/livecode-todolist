@@ -12,6 +12,24 @@ public class AuthDTO {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
+    public static class RegisterRequest {
+        @NotBlank(message = "Write your name!")
+        private String name;
+
+        @NotBlank(message = "Write your email!")
+        private String email;
+
+        @NotBlank(message = "Write your username!")
+        private String username;
+
+        @NotBlank(message = "Write your password!")
+        private String password;
+    }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class AuthRequest {
         @NotBlank(message = "Write your username!")
         private String username;

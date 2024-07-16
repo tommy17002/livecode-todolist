@@ -1,4 +1,4 @@
-package enigma.to_do_list.utils.specification;
+package enigma.to_do_list.utils;
 
 import lombok.*;
 

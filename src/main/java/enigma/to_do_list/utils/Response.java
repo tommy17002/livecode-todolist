@@ -1,4 +1,4 @@
-package enigma.to_do_list.utils.specification;
+package enigma.to_do_list.utils;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -17,6 +17,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @NotBlank (message = "Category name cannot be null!")
     private String name;
 }

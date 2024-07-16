@@ -19,7 +19,11 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private String name;
+
     private String username;
+
+    private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // supaya tidak di-return di response API
     private String password;
