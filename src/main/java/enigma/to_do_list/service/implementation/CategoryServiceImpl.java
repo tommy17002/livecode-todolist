@@ -28,16 +28,19 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getOne(Integer id) {
-        return null;
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Category with id " + id + " not found"));
     }
 
     @Override
     public Category update(Category request) {
-        return null;
+        Category category = this.getOne(request.getId());
+        category.setName(request.getName());
+        return categoryRepository.save(request);
     }
 
     @Override
     public void delete(Integer id) {
-
+        categoryRepository.deleteById(id);
     }
 }

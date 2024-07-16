@@ -26,5 +26,7 @@ public class TaskDTO {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date due_date;
 
-    private Boolean completed = false;
+    private String notes;
+
+    private Boolean completed;
 }

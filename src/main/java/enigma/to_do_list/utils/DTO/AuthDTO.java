@@ -30,7 +30,7 @@ public class AuthDTO {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class AuthRequest {
+    public static class LoginRequest {
         @NotBlank(message = "Write your username!")
         private String username;
 

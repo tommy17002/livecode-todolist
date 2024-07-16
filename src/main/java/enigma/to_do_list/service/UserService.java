@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface UserService {
+    UserEntity create(UserEntity request);
     Page<UserEntity> getAll(Pageable pageable, String name);
     UserEntity getOne(Integer id);
     void delete(Integer id);
