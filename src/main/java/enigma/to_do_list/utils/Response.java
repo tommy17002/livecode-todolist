@@ -14,7 +14,7 @@ public class Response {
         return ResponseEntity.status(httpStatus).body(response);
     }
 
-    public static <T> ResponseEntity<?> renderJson2(String message, HttpStatus httpStatus) {
+    public static <T> ResponseEntity<?> renderJson(String message, HttpStatus httpStatus) {
         WebResponse<?> response = WebResponse.builder()
                 .status(httpStatus.getReasonPhrase())
                 .message(message)

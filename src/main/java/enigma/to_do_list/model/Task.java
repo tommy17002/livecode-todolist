@@ -25,7 +25,7 @@ public class Task {
 
     private Boolean completed;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date due_date;
 
     private String notes;

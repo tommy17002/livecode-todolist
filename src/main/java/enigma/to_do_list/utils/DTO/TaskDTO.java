@@ -23,7 +23,7 @@ public class TaskDTO {
     @NotBlank(message = "Write your to do task name!")
     private String to_do;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date due_date;
 
     private String notes;

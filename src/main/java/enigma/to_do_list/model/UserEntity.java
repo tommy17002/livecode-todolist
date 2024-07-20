@@ -27,10 +27,10 @@ public class UserEntity {
 
     private String email;
 
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    @Enumerated(EnumType.STRING)
-//    private List<Role> roles;
-
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // supaya tidak di-return di response API
     private String password;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private List<Role> roles;
 }

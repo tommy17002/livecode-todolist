@@ -60,7 +60,7 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         categoryService.delete(id);
-        return Response.renderJson2(
+        return Response.renderJson(
                 "CATEGORY DELETED",
                 HttpStatus.OK
         );
