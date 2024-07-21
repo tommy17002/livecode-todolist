@@ -32,26 +32,26 @@ public class SecurityConfig {
                 // Setting up endpoints authorizations
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints -> Permit All for auth endpoints (register and login feature)
-                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers("/api/todo/auth/**").permitAll()
 
                         // Category Controller
-                        .requestMatchers(HttpMethod.POST, "/api/v1/cars").hasAnyRole("ADMIN", "MANAGER")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/cars", "/api/v1/cars/*").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/cars/*").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/cars/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/todo/categories").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/todo/categories", "/api/todo/categories/*").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/todo/categories/*").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/todo/categories/*").authenticated()
 
                         // Task Controller
-                        .requestMatchers(HttpMethod.POST, "/api/v1/brands").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/brands", "/api/v1/brands/*").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/brands/*").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/brands/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/todo/tasks").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/todo/tasks", "/api/todo/tasks/*").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/todo/tasks/*").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/api/todo/tasks/*").authenticated()
 
                         // User endpoints
-                        .requestMatchers("/api/v1/users").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/users/{id}").access(userAuthorizationManager())
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/users/{id}/topup").access(userAuthorizationManager())
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/users/*").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/users/*").hasRole("ADMIN")
+                        .requestMatchers("/api/todo/users").permitAll()
+//                        .requestMatchers("/api/todo/users").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.GET, "/api/todo/users/{id}").access(userAuthorizationManager())
+//                        .requestMatchers(HttpMethod.PUT, "/api/todo/users/*").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.DELETE, "/api/todo/users/*").hasRole("ADMIN")
 
                         // Any other request
                         .anyRequest().authenticated()

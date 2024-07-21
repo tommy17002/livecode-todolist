@@ -10,7 +10,8 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 
 public class TaskDTO {

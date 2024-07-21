@@ -1,6 +1,5 @@
 package enigma.to_do_list.controller;
 
-import enigma.to_do_list.model.Category;
 import enigma.to_do_list.model.Task;
 import enigma.to_do_list.service.TaskService;
 import enigma.to_do_list.utils.DTO.TaskCompleteDTO;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/api/todo/task")
+@RequestMapping("/api/todo/tasks")
 @RequiredArgsConstructor
 public class TaskController {
     private final TaskService taskService;

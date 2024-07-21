@@ -71,7 +71,7 @@ public class TaskServiceImpl implements TaskService {
         completedTask.setCompleted(true);
         if (completedTask.getDue_date() != null
                 && request.getCompleted_at() != null
-                && !completedTask.getNotes().isEmpty()) {
+                && completedTask.getNotes() == null ) {
             if (completedTask.getDue_date().getTime() > request.getCompleted_at().getTime()) {
                 completedTask.setNotes("YOU'VE DONE YOUR TASK BEFORE DEADLINE, GOOD JOB!");
             } else completedTask.setNotes("YOU MISS THE DEADLINE, BE BETTER NEXT TIME!");

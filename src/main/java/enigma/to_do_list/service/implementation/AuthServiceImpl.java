@@ -28,16 +28,17 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public ResponseEntity<?> register(AuthDTO.RegisterRequest request) {
-        if (repository.findByUsername(request.getEmail()).isPresent()) {
-            throw new RuntimeException("User with this email already exists");
-        }
-        if (repository.findByUsername(request.getUsername()).isPresent()) {
+        if (repository.existsByUsername(request.getUsername())) {
             throw new RuntimeException("User with this username already exists");
+        }
+        if (repository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("User with this email already exists");
         }
 
         var user = UserEntity.builder()
                 .name(request.getName())
                 .email(request.getEmail())
+                .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .roles(List.of(Role.ROLE_USER))
                 .build();
@@ -46,21 +47,23 @@ public class AuthServiceImpl implements AuthService {
 
         return Response.renderJson(
                 savedUser,
-                "New User With BCrypt Password Created",
+                "User registered successfully",
                 HttpStatus.CREATED
         );
     }
 
     @Override
     public AuthDTO.AuthenticationResponse login(AuthDTO.LoginRequest request) {
+        UserEntity user = repository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found or username incorrect"));
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
                         request.getPassword()
                 )
         );
-        var user = repository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+
         var jwtToken = jwtService.generateToken((UserDetails) user);
         return AuthDTO.AuthenticationResponse.builder()
                 .token(jwtToken)

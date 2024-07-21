@@ -18,14 +18,14 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerBcrypt(
+    public ResponseEntity<?> register(
             @RequestBody AuthDTO.RegisterRequest request
     ) {
         return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthDTO.AuthenticationResponse> authenticateBcypt(
+    public ResponseEntity<AuthDTO.AuthenticationResponse> login(
             @RequestBody AuthDTO.LoginRequest request
     ) {
         return ResponseEntity.ok(authService.login(request));

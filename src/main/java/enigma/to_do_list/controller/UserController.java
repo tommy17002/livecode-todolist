@@ -1,7 +1,8 @@
 package enigma.to_do_list.controller;
 
-import enigma.to_do_list.model.Category;
-import enigma.to_do_list.service.CategoryService;
+import enigma.to_do_list.model.UserEntity;
+import enigma.to_do_list.service.UserService;
+import enigma.to_do_list.utils.DTO.UserDTO;
 import enigma.to_do_list.utils.PageResponse;
 import enigma.to_do_list.utils.Response;
 import lombok.RequiredArgsConstructor;
@@ -13,16 +14,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/todo/categories")
+@RequestMapping("/api/todo/users")
 @RequiredArgsConstructor
-public class CategoryController {
-    private final CategoryService categoryService;
+public class UserController {
+    private final UserService userService;
 
-    @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody Category request) {
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody UserDTO request) {
         return Response.renderJson(
-                categoryService.create(request),
-                "Success created category!",
+                userService.create(request),
+                "Success created admin!",
                 HttpStatus.CREATED
         );
     }
@@ -30,11 +31,11 @@ public class CategoryController {
     @GetMapping
     public ResponseEntity<?> getAll(@PageableDefault(size = 10) Pageable pageable,
                                     @RequestParam(required = false) String name ) {
-        Page<Category> cat = categoryService.getAll(pageable, name);
-        PageResponse<Category> result = new PageResponse<>(cat);
+        Page<UserEntity> cat = userService.getAll(pageable, name);
+        PageResponse<UserEntity> result = new PageResponse<>(cat);
         return Response.renderJson(
                 result,
-                "SHOW ALL CATEGORIES",
+                "SHOW ALL USERS",
                 HttpStatus.OK
         );
     }
@@ -42,16 +43,17 @@ public class CategoryController {
     @GetMapping("/{id}")
     private ResponseEntity<?> getOne(@PathVariable Integer id) {
         return Response.renderJson(
-                categoryService.getOne(id),
-                "FOUND CATEGORY BY ID",
+                userService.getOne(id),
+                "FOUND A USER BY ID",
                 HttpStatus.FOUND
         );
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody Category request) {
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@RequestBody UserDTO request,
+                                    @PathVariable Integer id) {
         return Response.renderJson(
-                categoryService.update(request),
+                userService.update(request, id),
                 "CATEGORY UPDATED",
                 HttpStatus.OK
         );
@@ -59,7 +61,7 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
-        categoryService.delete(id);
+        userService.delete(id);
         return Response.renderJson(
                 "CATEGORY DELETED",
                 HttpStatus.OK
