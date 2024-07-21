@@ -33,8 +33,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category update(Category request) {
-        Category category = this.getOne(request.getId());
+    public Category update(Category request, Integer id) {
+        Category category = this.getOne(id);
         category.setName(request.getName());
         return categoryRepository.save(request);
     }

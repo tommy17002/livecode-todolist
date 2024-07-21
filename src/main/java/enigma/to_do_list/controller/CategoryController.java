@@ -48,10 +48,11 @@ public class CategoryController {
         );
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody Category request) {
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@RequestBody Category request,
+                                    @PathVariable Integer id) {
         return Response.renderJson(
-                categoryService.update(request),
+                categoryService.update(request, id),
                 "CATEGORY UPDATED",
                 HttpStatus.OK
         );

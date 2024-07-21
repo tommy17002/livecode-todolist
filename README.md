@@ -88,10 +88,11 @@
   POST /api/todo/categories/create 
 ```
 ##### INPUT
+````
 Authorization (Add Login Token)
 Type - Bearer Token
 Token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEiLCJpYXQiOjE3MjE1NDk0ODQsImV4cCI6MTcyMTYzNTg4NH0.MlgrJAElNpq4HD3Ea5r3rMzlm0VCl8FFYlh3IX1DnPg
-Body
+````
 ```json
 {
   "name" : "Homework"
@@ -101,15 +102,16 @@ Body
 ![img_8.png](img_8.png)
 
 ### TASK
-#### CREATE TASK (AUTHENTICATED)
+#### CREATE TASK
 ```http
   POST /api/todo/tasks/create 
 ```
 ##### INPUT
+````
 Authorization (Add Login Token)
 Type - Bearer Token
 Token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGVuamVuIiwiaWF0IjoxNzIxNTUwOTc3LCJleHAiOjE3MjE2MzczNzd9.tgZtj0yFPxFtuT9wy5EU7RjExeZed2Xo1fhD8PkNY4w
-Body
+````
 ```json
 {
   "user_id" : 3,
@@ -122,15 +124,16 @@ Body
 ![img_9.png](img_9.png)
 ![img_10.png](img_10.png)
 
-#### COMPLETED TASK (AUTHENTICATED)
+#### COMPLETED TASK
 ```http
   PUT /api/todo/tasks/completed 
 ```
 ##### INPUT
+````
 Authorization (Add Login Token)
 Type - Bearer Token
 Token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGVuamVuIiwiaWF0IjoxNzIxNTUwOTc3LCJleHAiOjE3MjE2MzczNzd9.tgZtj0yFPxFtuT9wy5EU7RjExeZed2Xo1fhD8PkNY4w
-Body
+````
 ```json
 {
   "id" : 1,
@@ -140,3 +143,5 @@ Body
 ##### OUTPUT (completed become true, add notes if initial notes is null)
 ![img_11.png](img_11.png)
 ![img_12.png](img_12.png)
+
+

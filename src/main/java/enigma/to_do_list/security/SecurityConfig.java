@@ -10,7 +10,6 @@ import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.intercept.RequestAuthorizationContext;
@@ -47,11 +46,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/todo/tasks/*").authenticated()
 
                         // User endpoints
-                        .requestMatchers("/api/todo/users").permitAll()
-//                        .requestMatchers("/api/todo/users").hasRole("ADMIN")
-//                        .requestMatchers(HttpMethod.GET, "/api/todo/users/{id}").access(userAuthorizationManager())
-//                        .requestMatchers(HttpMethod.PUT, "/api/todo/users/*").hasRole("ADMIN")
-//                        .requestMatchers(HttpMethod.DELETE, "/api/todo/users/*").hasRole("ADMIN")
+                        .requestMatchers("/api/todo/users").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/todo/users/{id}").access(userAuthorizationManager())
+                        .requestMatchers(HttpMethod.PUT, "/api/todo/users/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/todo/users/*").hasRole("ADMIN")
 
                         // Any other request
                         .anyRequest().authenticated()
