@@ -17,17 +17,26 @@ import java.util.Date;
 public class TaskDTO {
     @NotNull (message = "User ID cannot be null!")
     private Integer user_id;
+//    private String user_id;
 
-    @NotNull (message = "Category ID cannot be null!")
-    private Integer category_id;
+//    @NotNull (message = "Category ID cannot be null!")
+//    private Integer category_id;
 
-    @NotBlank(message = "Write your to do task name!")
-    private String to_do;
+    @NotBlank(message = "Write your title task name!")
+    private String title;
+
+    @NotBlank(message = "Write your title description!")
+    private String description;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Date due_date;
+//    private Date dueDate;
+    private String dueDate;
 
-    private String notes;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private Date createdAt;
+//    private String createdAt;
 
-    private Boolean completed;
+//    private Boolean status;
+    private String status;
+
 }

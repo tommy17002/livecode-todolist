@@ -13,8 +13,8 @@ public class AuthDTO {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class RegisterRequest {
-        @NotBlank(message = "Write your name!")
-        private String name;
+//        @NotBlank(message = "Write your name!")
+//        private String name;
 
         @NotBlank(message = "Write your email!")
         private String email;
@@ -37,6 +37,18 @@ public class AuthDTO {
         @NotBlank(message = "Write your password!")
         private String password;
     }
+
+//    @Data
+//    @Builder
+//    @AllArgsConstructor
+//    @NoArgsConstructor
+//    public  static class RefreshTokenRequest {
+//        private String refreshToken;
+//    }
+//
+//    public static class AccessTokenResponse {
+//        private String accessToken;
+//    }
 
     @Data
     @Builder

@@ -12,7 +12,9 @@ public interface TaskService {
     Task create(TaskDTO request);
     Page<Task> getAll(Pageable pageable, Boolean completed, Date due_date);
     Task getOne(Integer id);
-    Task update(Integer id, TaskDTO request);
+//    Task getOne(String id);
+    Task update(TaskDTO request);
     Task completed(TaskCompleteDTO request);
     void delete(Integer id);
+//    void delete(String id);
 }

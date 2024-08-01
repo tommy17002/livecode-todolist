@@ -21,8 +21,9 @@ public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+//    private String id;
 
-    private String name;
+//    private String name;
 
     private String username;
 

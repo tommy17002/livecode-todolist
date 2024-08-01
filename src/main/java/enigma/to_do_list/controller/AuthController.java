@@ -31,4 +31,13 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(request));
     }
 
+//    @PostMapping("/refresh")
+//    public ResponseEntity<AuthDTO.AuthenticationResponse> refreshToken
+//            (@RequestBody AuthDTO.RefreshTokenRequest request) {
+//        String refreshToken = request.getRefreshToken();
+//        String accessToken = authService.refreshToken(refreshToken);
+//        AuthDTO.AccessTokenResponse response = new AuthDTO.AccessTokenResponse(accessToken);
+//        return ResponseEntity.ok(response);
+//    }
 }
+

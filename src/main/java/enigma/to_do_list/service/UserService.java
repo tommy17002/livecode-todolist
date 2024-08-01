@@ -11,4 +11,9 @@ public interface UserService {
     UserEntity getOne(Integer id);
     UserEntity update(UserDTO request, Integer id);
     void delete(Integer id);
+//    UserEntity getOne(String id);
+//    UserEntity update(UserDTO request, String id);
+//    void delete(String id);
+
+    UserEntity findByUsername(String username);
 }

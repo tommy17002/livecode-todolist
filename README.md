@@ -1,3 +1,5 @@
+copyright by nabila suci, i just continue/resume her project here https://github.com/nabilasucisa/to-do-list
+
 # DATABASE SCHEME / DIAGRAM
 ![img_3.png](img_3.png)
 
@@ -52,7 +54,7 @@
 
 ### AUTHENTICATION
 #### LOGIN
-```http
+```http 
   POST /api/todo/auth/login  
 ```
 ##### INPUT

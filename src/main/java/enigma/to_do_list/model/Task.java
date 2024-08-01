@@ -18,21 +18,30 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+//    private String id;
 
-    private String to_do;
+    private String title;
 
-    private Boolean completed;
+//    private Boolean status;
+    private String status;
 
+    private String description;
+
+    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Date due_date;
+//    private Date dueDate;
+    private String dueDate;
 
-    private String notes;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date createdAt;
+//    private String createdAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+//    @ManyToOne
+//    @JoinColumn(name = "category_id")
+//    private Category category;
 }

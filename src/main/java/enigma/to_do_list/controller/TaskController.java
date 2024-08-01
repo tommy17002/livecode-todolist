@@ -17,16 +17,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/api/todo/tasks")
+@RequestMapping("/api/todos")
 @RequiredArgsConstructor
 public class TaskController {
     private final TaskService taskService;
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<TaskDTO> updateTaskStatus(@PathVariable Integer id, @RequestBody TaskDTO request) {
+        request.setUser_id(id); // Set ID dari path variable ke dalam objek TaskDTO
+        Task updatedTask = taskService.update(request);
+
+        // Konversi Task ke TaskDTO
+        TaskDTO updatedTaskDTO = new TaskDTO();
+        updatedTaskDTO.setUser_id(updatedTask.getId());
+        updatedTaskDTO.setTitle(updatedTask.getTitle());
+        updatedTaskDTO.setDescription(updatedTask.getDescription());
+        updatedTaskDTO.setDueDate(updatedTask.getDueDate());
+        updatedTaskDTO.setStatus(updatedTask.getStatus());
+
+        return ResponseEntity.ok(updatedTaskDTO);
+    }
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody TaskDTO request) {
         return Response.renderJson(
                 taskService.create(request),
-                "Success created category!",
+                "Success created!",
                 HttpStatus.CREATED
         );
     }
@@ -46,6 +62,7 @@ public class TaskController {
 
     @GetMapping("/{id}")
     private ResponseEntity<?> getOne(@PathVariable Integer id) {
+//    private ResponseEntity<?> getOne(@PathVariable String id) {
         return Response.renderJson(
                 taskService.getOne(id),
                 "FOUND TASK BY ID",
@@ -53,11 +70,11 @@ public class TaskController {
         );
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> update(@RequestBody TaskDTO request,
                                     @PathVariable Integer id) {
         return Response.renderJson(
-                taskService.update(id, request),
+                taskService.update(request),
                 "TASK UPDATED",
                 HttpStatus.OK
         );
@@ -74,6 +91,7 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
+//    public ResponseEntity<?> delete(@PathVariable String id) {
         taskService.delete(id);
         return Response.renderJson(
                 "TASK DELETED",

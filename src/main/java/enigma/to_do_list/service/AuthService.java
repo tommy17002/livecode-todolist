@@ -7,4 +7,5 @@ import org.springframework.http.ResponseEntity;
 public interface AuthService {
     ResponseEntity<?> register(AuthDTO.RegisterRequest request);
     AuthenticationResponse login(AuthDTO.LoginRequest request);
+//    AuthenticationResponse refreshToken(AuthDTO.RefreshTokenRequest request);
 }

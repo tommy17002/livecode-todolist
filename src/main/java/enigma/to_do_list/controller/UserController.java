@@ -42,6 +42,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     private ResponseEntity<?> getOne(@PathVariable Integer id) {
+//    private ResponseEntity<?> getOne(@PathVariable String id) {
         return Response.renderJson(
                 userService.getOne(id),
                 "FOUND A USER BY ID",
@@ -52,6 +53,8 @@ public class UserController {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@RequestBody UserDTO request,
                                     @PathVariable Integer id) {
+//    public ResponseEntity<?> update(@RequestBody UserDTO request,
+//                                    @PathVariable String id) {
         return Response.renderJson(
                 userService.update(request, id),
                 "CATEGORY UPDATED",
@@ -61,6 +64,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
+//    public ResponseEntity<?> delete(@PathVariable String id) {
         userService.delete(id);
         return Response.renderJson(
                 "CATEGORY DELETED",

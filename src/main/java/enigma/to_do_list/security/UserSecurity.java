@@ -18,6 +18,7 @@ public class UserSecurity {
         }
 
         UserEntity user = (UserEntity) principal;
-        return user.getId() == userId;
+//        return user.getId() == userId;
+        return user.getId() .equals(userId) ;
     }
 }

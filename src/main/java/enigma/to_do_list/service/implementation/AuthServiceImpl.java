@@ -8,6 +8,7 @@ import enigma.to_do_list.service.AuthService;
 import enigma.to_do_list.utils.DTO.AuthDTO;
 import enigma.to_do_list.utils.Response;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,7 +37,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         var user = UserEntity.builder()
-                .name(request.getName())
+//                .name(request.getName())
                 .email(request.getEmail())
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -70,4 +71,36 @@ public class AuthServiceImpl implements AuthService {
                 .message("Login success for User_ID = " + user.getId())
                 .build();
     }
+
+//    @Service
+//    public class TokenService {
+//
+//        @Autowired
+//        private JwtTokenUtil jwtTokenUtil;
+//        @Autowired
+//        private RefreshTokenRepository refreshTokenRepository;
+//
+//        public String refreshToken(String refreshToken) {
+//            RefreshToken dbRefreshToken = refreshTokenRepository.findByToken(refreshToken)
+//                    .orElseThrow(() -> new TokenRefreshException("Refresh token is not valid"));
+//
+//            if (dbRefreshToken.isExpired()) {
+//                throw new TokenRefreshException("Refresh token is expired");
+//            }
+//
+//            // Generate new access token
+//            String accessToken = jwtTokenUtil.generateAccessToken(dbRefreshToken.getUser().getId());
+//
+//            // Revoke old refresh token
+//            dbRefreshToken.setExpired(true);
+//            refreshTokenRepository.save(dbRefreshToken);
+//
+//            // Generate new refresh token
+//            String newRefreshToken = jwtTokenUtil.generateRefreshToken();
+//            dbRefreshToken.setToken(newRefreshToken);
+//            refreshTokenRepository.save(dbRefreshToken);
+//
+//            return accessToken;
+//        }
+//    }
 }
